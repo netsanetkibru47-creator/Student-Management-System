@@ -37,6 +37,7 @@ export default function StudentForm({ onAddStudent }) {
           <option value="React">React Development</option>
           <option value="JavaScript">JavaScript Core</option>
           <option value="HTML & CSS">HTML & CSS Foundations</option>
+          <option value="Python">Python Basics</option>
         </select>
       </div>
 

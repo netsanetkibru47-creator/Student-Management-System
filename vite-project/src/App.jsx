@@ -9,8 +9,8 @@ function App() {
   const [authForm, setAuthForm] = useState({ username: '', password: '' });
   const [currentView, setCurrentView] = useState('dashboard');
   const [students, setStudents] = useState([
-    { id: 1, name: "Abebe", course: "JavaScript", grade: "A+" },
-    { id: 2, name: "Hana", course: "HTML & CSS", grade: "A" }
+    { id: 1, name: "Abebe", course: "JavaScript core", grade: "A+" },
+    { id: 2, name: "Hana", course: "HTML & CSS Foundations", grade: "A" }
   ]);
   const [courses, setCourses] = useState(["JavaScript Core", "HTML & CSS Foundations", "React Development", "Python Basics"]);
   const [selectedEnrollStudent, setSelectedEnrollStudent] = useState('');
