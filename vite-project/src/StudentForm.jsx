@@ -1,9 +1,8 @@
-// src/StudentForm.jsx
 import { useState } from 'react';
 
 export default function StudentForm({ onAddStudent }) {
   const [name, setName] = useState('');
-  const [course, setCourse] = useState('React'); // Default selected course
+  const [course, setCourse] = useState('React'); 
 
   const handleSubmit = (e) => {
     e.preventDefault();

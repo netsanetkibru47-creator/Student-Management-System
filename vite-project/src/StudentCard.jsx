@@ -1,4 +1,3 @@
-// src/StudentCard.jsx
 export default function StudentCard({ name, course, onDelete }) {
   return (
     <div className="student-card" style={{ border: '1px solid #ccc', padding: '15px', borderRadius: '8px' }}>
