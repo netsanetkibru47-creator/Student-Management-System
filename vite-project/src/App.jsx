@@ -1,4 +1,3 @@
-// src/App.jsx (Find your App function and update the state and Dashboard section)
 import { useState } from 'react';
 import StudentCard from './StudentCard.jsx';
 import StudentForm from './StudentForm.jsx';
@@ -18,10 +17,12 @@ function App() {
   const [selectedEnrollStudent, setSelectedEnrollStudent] = useState('');
   const [selectedEnrollCourse, setSelectedEnrollCourse] = useState('React Development');
 
-  // 👈 ADD THIS NEW STATE FOR THE TOGGLE CLICK
+  // FOR THE TOGGLE CLICK
   const [isMonthDetailOpen, setIsMonthDetailOpen] = useState(false);
+  const [isTopPerformerOpen, setIsTopPerformerOpen] = useState(false);
 
-  // --- Keep all your existing handlers (handleAuthSubmit, handleAddStudent, etc.) ---
+    const topPerformers = students.filter(s => s.grade.startsWith('A')).slice(0, 3);
+
   const handleAuthSubmit = (e) => {
     e.preventDefault();
     if (!authForm.username || !authForm.password) return alert("Fill out all fields");
@@ -67,7 +68,7 @@ function App() {
       </aside>
 
       <main className="main-content">
-        {/* VIEW 1: METRICS DASHBOARD PANEL */}
+       
         {currentView === 'dashboard' && (
           <div>
             <h2>Overview Dashboard</h2>
@@ -81,12 +82,16 @@ function App() {
                 <h4>Total Courses</h4>
                 <p className="metric-num">{courses.length}</p>
               </div>
-              <div className="metric-box bg-purple">
-                <h4>Top Performing</h4>
+
+              <div 
+                className="metric-box bg-purple clickable-box" 
+                onClick={() => setIsTopPerformerOpen(!isTopPerformerOpen)}
+                style={{ cursor: 'pointer' }}
+              >
+                <h4>Top Performing <span>(Click to view 3)</span></h4>
                 <p className="metric-num">{students.filter(s => s.grade.startsWith('A')).length}</p>
               </div>
               
-              {/* 👈 UPDATED THIS BOX: Click triggers state change and pointer cursor style */}
               <div 
                 className="metric-box bg-orange clickable-box" 
                 onClick={() => setIsMonthDetailOpen(!isMonthDetailOpen)}
@@ -97,7 +102,36 @@ function App() {
               </div>
             </div>
 
-            {/* 👈 NEW LOGIC RENDER: If clicked open, show the students summary block below */}
+             {isTopPerformerOpen && (
+              <div className="top-performers-details" style={{ marginTop: '30px', background: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+                <h3 style={{ color: '#6b21a8' }}>🏆 Top 3 Star Performers</h3>
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                  <thead>
+                    <tr style={{ borderBottom: '2px solid #eee', paddingBottom: '10px' }}>
+                      <th style={{ padding: '10px 0' }}>Student Name</th>
+                      <th>Course</th>
+                      <th>Grade</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {topPerformers.map((student) => (
+                      <tr key={student.id} style={{ borderBottom: '1px solid #f9f9f9' }}>
+                        <td style={{ padding: '12px 0', fontWeight: '500' }}>⭐ {student.name}</td>
+                        <td style={{ color: '#555' }}>{student.course}</td>
+                        <td style={{ color: '#16a34a', fontWeight: 'bold' }}>{student.grade}</td>
+                      </tr>
+                    ))}
+                    {topPerformers.length === 0 && (
+                      <tr>
+                        <td colSpan="3" style={{ textAlign: 'center', padding: '20px', color: '#888' }}>No students with 'A' grades yet.</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+           
             {isMonthDetailOpen && (
               <div className="monthly-enrollment-details" style={{ marginTop: '30px', background: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
                 <h3>Monthly Enrollment Breakdown</h3>
@@ -122,7 +156,7 @@ function App() {
           </div>
         )}
 
-        {/* --- Keep remaining structural view tags below (courses, students, enroll) --- */}
+        { }
         {currentView === 'courses' && (
           <div>
             <h2>Available Institutional Courses</h2>
