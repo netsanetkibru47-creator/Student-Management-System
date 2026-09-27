@@ -1,11 +1,9 @@
-/* src/App.css Stylesheet Layout Setup */
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #f3f4f6;
 }
-
-/* Auth Screens styling layout */
 .auth-wrapper {
   display: flex;
   justify-content: center;
@@ -41,8 +39,6 @@ body {
   margin-top: 15px;
   font-size: 14px;
 }
-
-/* Master Authenticated Dashboard Layout */
 .app-layout {
   display: grid;
   grid-template-columns: 240px 1fr;
@@ -84,7 +80,7 @@ body {
   padding: 30px;
 }
 
-/* Metric boxes row alignment */
+
 .metrics-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
