@@ -4,7 +4,6 @@ import StudentForm from './StudentForm.jsx';
 import './App.css';
 
 function App() {
-  // --- Keep all your existing states ---
   const [isRegistered, setIsRegistered] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authForm, setAuthForm] = useState({ username: '', password: '' });
